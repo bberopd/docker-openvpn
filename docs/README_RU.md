@@ -44,7 +44,7 @@ https://hub.docker.com/r/alekslitvinenk/openvpn
 Скопируйте код ниже и вставьте его в консоли вашего сервера:<br>
 ```bash
 docker run --cap-add=NET_ADMIN \
--p 1194:1194/tcp -p 80:8080/tcp \
+-p 1194:1194/tcp -p 8080:8080/tcp \
 -e HOST_ADDR=$(curl -s https://api.ipify.org) \
 alekslitvinenk/openvpn
 ```
@@ -53,14 +53,14 @@ alekslitvinenk/openvpn
 ```
 Sun Jun  9 08:56:11 2019 Initialization Sequence Completed
 Sun Jun  9 08:56:12 2019 Client.ovpn file has been generated
-Sun Jun  9 08:56:12 2019 Config server started, download your client.ovpn config at http://example.com/
+Sun Jun  9 08:56:12 2019 Config server started, download your client.ovpn config at http://example.com:8080/
 Sun Jun  9 08:56:12 2019 NOTE: After you download you client config, http server will be shut down!
  ```
 
 Сервис поднимет одноразовый http-сервер для того чтобы вы могли скчать файл с клиентскими настройками. После того как файл будет скачан, http-сервер будет остановлен.
 
 ## 2. Получите клиенсткий файл конфигурации
-Теперь, когда сервер запущен, вы можете прейти на `<IP адрес вашего сервера>` в браузере и скачать клиенсткий файл конфигурации. Загрузка фала должна начаться немедленно.<br>
+Теперь, когда сервер запущен, вы можете прейти на `<IP адрес вашего сервера>:8080` в браузере и скачать клиенсткий файл конфигурации. Загрузка фала должна начаться немедленно.<br>
 Как только вы загрузите файл, в консоле вашего сервера вы увидите сообщение о том что http сервер был остановлен.
 
 ```
