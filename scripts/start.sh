@@ -9,9 +9,9 @@ if [ ! -c /dev/net/tun ]; then
     mknod /dev/net/tun c 10 200
 fi
 
-# Allow UDP traffic on port 1194.
-iptables -A INPUT -i eth0 -p udp -m state --state NEW,ESTABLISHED --dport 1194 -j ACCEPT
-iptables -A OUTPUT -o eth0 -p udp -m state --state ESTABLISHED --sport 1194 -j ACCEPT
+# Allow TCP traffic on port 1194.
+iptables -A INPUT -i eth0 -p tcp -m state --state NEW,ESTABLISHED --dport 1194 -j ACCEPT
+iptables -A OUTPUT -o eth0 -p tcp -m state --state ESTABLISHED --sport 1194 -j ACCEPT
 
 # Allow traffic on the TUN interface.
 iptables -A INPUT -i tun0 -j ACCEPT
